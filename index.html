@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Lokale Apple Health-naar-CSV converter zonder uploads." />
+    <title>Apple Health Converter</title>
+  </head>
+  <body>
+    <main class="page">
+      <h1>Apple Health Converter</h1>
+
+      <form id="converter-form">
+        <label for="file">Bestand (.zip of export.xml)</label>
+        <input id="file" name="file" type="file" accept=".zip,.xml,application/zip,text/xml,application/xml" required />
+
+        <fieldset>
+          <legend>Periode (laatste 28 dagen)</legend>
+          <div class="date-fields">
+            <label for="start-date">Startdatum <input id="start-date" name="start-date" type="date" readonly aria-readonly="true" /></label>
+            <label for="end-date">Einddatum <input id="end-date" name="end-date" type="date" required /></label>
+          </div>
+          <p class="hint">Kies een einddatum. De weergegeven startdatum wordt automatisch ingesteld zodat de periode precies 28 kalenderdagen bevat.</p>
+        </fieldset>
+
+        <fieldset id="data-types-fieldset" class="data-types-locked">
+          <legend>Gegevens <span id="type-lock-label">(vergrendeld)</span></legend>
+          <div id="type-options"></div>
+        </fieldset>
+
+        <button id="process" type="submit">Verwerken</button>
+      </form>
+
+      <section aria-live="polite" aria-atomic="true">
+        <h2>Status</h2>
+        <p id="status">Kies een bestand om te beginnen.</p>
+        <progress id="progress" max="100" value="0" hidden></progress>
+      </section>
+
+      <button id="download" type="button" disabled>CSV opslaan</button>
+      <section id="sleep-results" hidden aria-live="polite">
+        <h2 id="sleep-heading">Slaap per dag</h2>
+        <p id="sleep-summary"></p>
+        <div class="sleep-legend" aria-label="Legenda"><span class="stage core">Kern</span><span class="stage deep">Diep</span><span class="stage rem">REM</span><span class="stage awake">Wakker</span><span class="stage in-bed">In bed</span></div>
+        <div id="sleep-days"></div>
+        <div class="pager">
+          <button id="previous-sleep-page" type="button">Vorige</button>
+          <span id="sleep-page-status"></span>
+          <button id="next-sleep-page" type="button">Volgende</button>
+        </div>
+      </section>
+      <section id="results" hidden aria-live="polite">
+        <h2>Overige gegevens</h2>
+        <p id="results-summary"></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Type</th><th>Start</th><th>Einde</th><th>Waarde</th><th>Eenheid</th><th>Bron</th></tr></thead>
+            <tbody id="results-body"></tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <button id="previous-page" type="button">Vorige</button>
+          <span id="page-status"></span>
+          <button id="next-page" type="button">Volgende</button>
+        </div>
+      </section>
+      <p class="hint">Er worden geen gegevens in browseropslag bewaard. Sluit of herlaad de pagina om de tijdelijke uitvoer uit het geheugen te verwijderen.</p>
+
+    </main>
+    <script type="module" src="/src/app/main.ts"></script>
+  </body>
+</html>

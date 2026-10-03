@@ -1,0 +1,63 @@
+:root { font-family: system-ui, sans-serif; color: #1d1d1f; background: #fff; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.page { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { margin-top: 0; }
+form, fieldset, section { margin: 20px 0; }
+fieldset { border: 1px solid #bbb; }
+label, input, button { display: block; margin: 8px 0; }
+.checkbox { display: inline-block; margin-right: 18px; touch-action: manipulation; }
+.checkbox input { display: inline; }
+.checkbox.long-press-active { background: #e6f4ea; outline: 2px solid #167a34; outline-offset: 2px; }
+.data-types-locked { background: #f3f4f5; color: #777; }
+.data-types-locked #type-options { opacity: .56; }
+.data-types-locked .checkbox { cursor: not-allowed; }
+.data-types-locked input:disabled { pointer-events: none; }
+.data-types-locked .hint { color: #666; }
+.data-types-unlocking { outline: 2px solid #a06a00; outline-offset: 2px; }
+.data-types-unlocked { background: #f8fffa; }
+.date-fields { display: flex; flex-wrap: wrap; gap: 12px; }
+.date-fields + .hint { margin: 3px 0 0; }
+.date-fields input[readonly] { background: #f1f1f1; color: #444; cursor: default; }
+button { padding: 8px 14px; font: inherit; }
+progress { width: 100%; }
+.table-wrap { overflow-x: auto; border: 1px solid #bbb; }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { padding: 7px; border-bottom: 1px solid #ddd; text-align: left; white-space: nowrap; }
+th { background: #f2f2f2; }
+.pager { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.sleep-legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; font-size: .85rem; }
+.stage { display: inline-flex; align-items: center; gap: 4px; }
+.stage::before { content: ''; width: 11px; height: 11px; border-radius: 50%; background: currentColor; }
+.stage.core { color: #2673dd; }
+.stage.deep { color: #4636a6; }
+.stage.rem { color: #20a2bd; }
+.stage.awake { color: #d26a18; }
+.stage.in-bed { color: #7b8794; }
+.sleep-card { border: 1px solid #c8d3e2; border-radius: 6px; padding: 12px; margin: 10px 0; background: #fbfdff; }
+.sleep-card h3 { font-size: 1rem; margin: 0 0 4px; text-transform: capitalize; }
+.sleep-duration { margin: 0 0 10px; font-weight: 600; }
+.sleep-visual { position: relative; touch-action: none; }
+.timeline-tooltip { position: absolute; z-index: 5; max-width: 172px; padding: 7px 9px; border-radius: 5px; background: rgba(22, 28, 36, .94); color: #fff; font-size: .78rem; line-height: 1.35; white-space: pre-line; pointer-events: none; box-shadow: 0 2px 8px rgba(0, 0, 0, .24); }
+.heart-chart { margin-bottom: 8px; }
+.heart-chart-label { margin: 0 0 3px; font-size: .85rem; font-weight: 600; color: #6b1740; }
+.heart-chart-empty { margin: 0; padding: 12px; background: #f5f5f5; color: #555; font-size: .85rem; }
+.heart-chart-canvas { display: block; width: 100%; height: 104px; border: 1px solid #f0d6e0; border-radius: 5px; background: #fffafd; }
+.step-chart { margin-top: 8px; }
+.step-chart-label { margin: 0 0 3px; font-size: .85rem; font-weight: 600; color: #176b2e; }
+.step-chart-empty { margin: 0; padding: 10px; background: #f5f5f5; color: #555; font-size: .85rem; }
+.step-chart-canvas { display: block; width: 100%; height: 52px; border: 1px solid #d5ead9; border-radius: 5px; background: #edf7ef; }
+.time-ruler { position: absolute; z-index: 3; top: 22px; bottom: 0; width: 2px; margin-left: -1px; pointer-events: none; background: #151515; opacity: .7; }
+.sleep-timeline { position: relative; height: 30px; overflow: hidden; border-radius: 8px; background: #edf2f7; }
+.sleep-block { position: absolute; top: 4px; bottom: 4px; min-width: 2px; padding: 0; border: 0; border-radius: 4px; cursor: help; }
+.sleep-block:focus-visible { outline: 2px solid #111; outline-offset: 1px; }
+.sleep-block.core { background: #2673dd; }
+.sleep-block.deep { background: #4636a6; }
+.sleep-block.rem { background: #20a2bd; }
+.sleep-block.awake { background: #d26a18; }
+.sleep-block.inBed { background: #7b8794; opacity: .45; }
+.sleep-block.asleep { background: #4f8fe9; }
+.sleep-times { display: flex; justify-content: space-between; color: #4a5568; font-size: .8rem; margin-top: 4px; }
+.hint { color: #555; font-size: .9rem; }
+.error { color: #b00020; }
+@media (max-width: 480px) { .page { padding: 16px; } }
