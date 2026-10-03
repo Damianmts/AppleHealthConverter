@@ -11,3 +11,14 @@ export function getStartDateFor28DayWindow(endDate: string): string | undefined 
 export function toDateInputValue(date: Date): string {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
+
+export function getCalendarDates(startDate: string, endDate: string): string[] {
+  const dates: string[] = [];
+  const start = new Date(`${startDate}T12:00:00`);
+  const end = new Date(`${endDate}T12:00:00`);
+  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime()) || start > end) return dates;
+  for (const cursor = start; cursor <= end; cursor.setDate(cursor.getDate() + 1)) {
+    dates.push(toDateInputValue(cursor));
+  }
+  return dates;
+}

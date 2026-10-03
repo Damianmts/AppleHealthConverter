@@ -16,6 +16,16 @@ export function typeAndDateMatches(typeKey: SupportedTypeKey, startDate: string,
   return true;
 }
 
+/** Includes a record when any part of its time interval touches the selected calendar range. */
+export function intervalOverlapsDateRange(startDate: string, endDate: string, options: ProcessingOptions): boolean {
+  const start = startDate.slice(0, 10);
+  const end = (endDate || startDate).slice(0, 10);
+  if (!start || !end) return false;
+  if (options.startDate && end < options.startDate) return false;
+  if (options.endDate && start > options.endDate) return false;
+  return true;
+}
+
 export function validateDateRange(options: ProcessingOptions): string | undefined {
   if (options.startDate && options.endDate && options.startDate > options.endDate) {
     return 'De startdatum mag niet na de einddatum liggen.';

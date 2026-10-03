@@ -1,15 +1,18 @@
-import type { HealthRecord } from './models';
+export const CSV_HEADER = ['categorie', 'datum', 'waarde', 'eenheid'];
 
-export const CSV_HEADER = ['type', 'start_date', 'end_date', 'value', 'unit', 'source_name', 'source_version', 'device'];
+export interface CsvSummaryRow {
+  category: string;
+  date: string;
+  value: string;
+  unit: string;
+}
 
 export function escapeCsvField(value: string): string {
   return `"${value.replaceAll('"', '""')}"`;
 }
 
-export function recordToCsv(record: HealthRecord): string {
-  return [record.outputType, record.startDate, record.endDate, record.value, record.unit, record.sourceName, record.sourceVersion, record.device]
-    .map(escapeCsvField)
-    .join(',');
+export function summaryRowToCsv(row: CsvSummaryRow): string {
+  return [row.category, row.date, row.value, row.unit].map(escapeCsvField).join(',');
 }
 
 export function csvPreamble(): string {

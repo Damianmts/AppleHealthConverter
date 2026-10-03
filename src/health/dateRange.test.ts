@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getStartDateFor28DayWindow } from './dateRange';
+import { getCalendarDates, getStartDateFor28DayWindow } from './dateRange';
 
 describe('28-day date range', () => {
   it('includes the selected end date in a 28 calendar-day period', () => {
@@ -13,5 +13,9 @@ describe('28-day date range', () => {
   it('rejects malformed dates', () => {
     expect(getStartDateFor28DayWindow('20-09-2026')).toBeUndefined();
     expect(getStartDateFor28DayWindow('2026-02-30')).toBeUndefined();
+  });
+
+  it('lists the inclusive calendar dates in chronological order', () => {
+    expect(getCalendarDates('2026-09-29', '2026-10-01')).toEqual(['2026-09-29', '2026-09-30', '2026-10-01']);
   });
 });

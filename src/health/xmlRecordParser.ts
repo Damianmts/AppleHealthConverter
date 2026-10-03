@@ -4,7 +4,7 @@ import type { SupportedTypeKey } from './appleHealthTypes';
 
 const MAX_UNFINISHED_RECORD_CHARS = 1_000_000;
 const RECORD_START = /<Record(?:\s|\/|>)/;
-export type AppleHealthRecordSelector = (typeKey: SupportedTypeKey, startDate: string) => boolean;
+export type AppleHealthRecordSelector = (typeKey: SupportedTypeKey, startDate: string, endDate: string) => boolean;
 
 export class AppleHealthXmlRecordParser {
   private pending = '';
@@ -90,7 +90,8 @@ export function parseAppleHealthRecord(element: string, selector?: AppleHealthRe
     const type = getSupportedType(rawType ? decodeXml(rawType) : undefined);
     if (!type) return undefined;
     const rawStartDate = extractQuotedAttribute(element, 'startDate');
-    if (!selector(type.key, rawStartDate ? decodeXml(rawStartDate) : '')) return undefined;
+    const rawEndDate = extractQuotedAttribute(element, 'endDate');
+    if (!selector(type.key, rawStartDate ? decodeXml(rawStartDate) : '', rawEndDate ? decodeXml(rawEndDate) : '')) return undefined;
   }
   const attributeSource = element.slice('<Record'.length, -1).replace(/\/\s*$/, '');
   const attributes = parseXmlAttributes(attributeSource);
